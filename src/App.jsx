@@ -7,6 +7,7 @@ function App() {
   const [compressed, setCompressed] = useState(null);
   const [width, setWidth] = useState("");
 const [height, setHeight] = useState("");
+const [activeTool, setActiveTool] = useState("compress");
 
 const resizeImage = () => {
   if (!image) return;
@@ -99,8 +100,54 @@ const convertToPNG = () => {
       <h1 style={{ marginBottom: "20px", color: "#222" }}>
         Compress Image Online Free
       </h1>
+      <div style={{ marginBottom: "20px" }}>
+  <button 
+    onClick={() => setActiveTool("compress")}
+    style={{
+      backgroundColor: activeTool === "compress" ? "#007bff" : "#ccc",
+      color: activeTool === "compress" ? "white" : "black",
+      marginRight: "10px",
+      padding: "6px 12px",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer"
+    }}
+  >
+    Compress
+  </button>
 
-      <input 
+  <button 
+    onClick={() => setActiveTool("resize")}
+    style={{
+      backgroundColor: activeTool === "resize" ? "#007bff" : "#ccc",
+      color: activeTool === "resize" ? "white" : "black",
+      marginRight: "10px",
+      padding: "6px 12px",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer"
+    }}
+  >
+    Resize
+  </button>
+
+  <button 
+    onClick={() => setActiveTool("convert")}
+    style={{
+      backgroundColor: activeTool === "convert" ? "#007bff" : "#ccc",
+      color: activeTool === "convert" ? "white" : "black",
+      padding: "6px 12px",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer"
+    }}
+  >
+    Convert
+  </button>
+</div>
+{activeTool === "compress" && (
+  <>
+   <input 
         type="file" 
         onChange={handleImage}
         style={{ marginBottom: "20px" }}
@@ -128,9 +175,11 @@ const convertToPNG = () => {
       >
         Compress Image
       </button>
-<br /><br />
-
-<h3 style={{ marginTop: "30px", marginBottom: "10px", color: "#333" }}>
+  </>
+)}
+{activeTool === "resize" && (
+  <>
+  <h3 style={{ marginTop: "30px", marginBottom: "10px", color: "#333" }}>
   Resize Image
 </h3>
 
@@ -177,9 +226,11 @@ const convertToPNG = () => {
 >
   Resize Image
 </button>
-<br /><br />
-
-<h3 style={{ marginTop: "30px", color: "#333" }}>
+  </>
+)}
+{activeTool === "convert" &&(
+  <>
+  <h3 style={{ marginTop: "30px", color: "#333" }}>
   Convert to PNG
 </h3>
 
@@ -197,7 +248,9 @@ const convertToPNG = () => {
 >
   Convert to PNG
 </button>
-      {compressed && (
+  </>
+)}
+{compressed && (
         <a 
           href={compressed} 
           download="compressed.png"
@@ -211,6 +264,7 @@ const convertToPNG = () => {
           Download Image
         </a>
       )}
+
 
     </div>
 </div>
