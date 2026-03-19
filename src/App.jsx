@@ -1,9 +1,31 @@
 import { useState } from "react";
 import imageCompression from "browser-image-compression";
 
+
 function App() {
   const [image, setImage] = useState(null);
   const [compressed, setCompressed] = useState(null);
+  const [width, setWidth] = useState("");
+const [height, setHeight] = useState("");
+
+const resizeImage = () => {
+  if (!image) return;
+
+  const img = new Image();
+  img.src = URL.createObjectURL(image);
+
+  img.onload = () => {
+    const canvas = document.createElement("canvas");
+    canvas.width = parseInt(width) || img.width;
+canvas.height = parseInt(height) || img.height;
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    const resizedUrl = canvas.toDataURL("image/jpeg");
+    setCompressed(resizedUrl);
+  };
+};
 
   const handleImage = (e) => {
     setImage(e.target.files[0]);
@@ -89,7 +111,55 @@ function App() {
       >
         Compress Image
       </button>
+<br /><br />
 
+<h3 style={{ marginTop: "30px", marginBottom: "10px", color: "#333" }}>
+  Resize Image
+</h3>
+
+<div style={{ marginBottom: "15px" }}>
+  <input 
+    type="number" 
+    placeholder="Width (px)"
+    value={width}
+    onChange={(e) => setWidth(e.target.value)}
+    style={{
+      padding: "10px",
+      width: "120px",
+      marginRight: "10px",
+      borderRadius: "5px",
+      border: "1px solid #ccc"
+    }}
+  />
+
+  <input 
+    type="number" 
+    placeholder="Height (px)"
+    value={height}
+    onChange={(e) => setHeight(e.target.value)}
+    style={{
+      padding: "10px",
+      width: "120px",
+      borderRadius: "5px",
+      border: "1px solid #ccc"
+    }}
+  />
+</div>
+
+<button 
+  onClick={resizeImage}
+  style={{
+    padding: "10px 20px",
+    fontSize: "14px",
+    backgroundColor: "#28a745",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer"
+  }}
+>
+  Resize Image
+</button>
       {compressed && (
         <a 
           href={compressed} 
