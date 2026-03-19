@@ -26,7 +26,24 @@ canvas.height = parseInt(height) || img.height;
     setCompressed(resizedUrl);
   };
 };
+const convertToPNG = () => {
+  if (!image) return;
 
+  const img = new Image();
+  img.src = URL.createObjectURL(image);
+
+  img.onload = () => {
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    const pngUrl = canvas.toDataURL("image/png");
+    setCompressed(pngUrl);
+  };
+};
   const handleImage = (e) => {
     setImage(e.target.files[0]);
   };
@@ -160,10 +177,30 @@ canvas.height = parseInt(height) || img.height;
 >
   Resize Image
 </button>
+<br /><br />
+
+<h3 style={{ marginTop: "30px", color: "#333" }}>
+  Convert to PNG
+</h3>
+
+<button 
+  onClick={convertToPNG}
+  style={{
+    padding: "10px 20px",
+    fontSize: "14px",
+    backgroundColor: "#ff5722",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer"
+  }}
+>
+  Convert to PNG
+</button>
       {compressed && (
         <a 
           href={compressed} 
-          download="compressed.jpg"
+          download="compressed.png"
           style={{
             marginTop: "20px",
             textDecoration: "none",
