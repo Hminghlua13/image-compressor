@@ -8,6 +8,7 @@ function App() {
   const [width, setWidth] = useState("");
 const [height, setHeight] = useState("");
 const [activeTool, setActiveTool] = useState("compress");
+const [format, setFormat] = useState("png");
 
 const resizeImage = () => {
   if (!image) return;
@@ -27,7 +28,7 @@ canvas.height = parseInt(height) || img.height;
     setCompressed(resizedUrl);
   };
 };
-const convertToPNG = () => {
+const convertImage = () => {
   if (!image) return;
 
   const img = new Image();
@@ -41,8 +42,8 @@ const convertToPNG = () => {
     const ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
 
-    const pngUrl = canvas.toDataURL("image/png");
-    setCompressed(pngUrl);
+    const convertedUrl = canvas.toDataURL(`image/${format}`);
+    setCompressed(convertedUrl);
   };
 };
   const handleImage = (e) => {
@@ -252,31 +253,45 @@ const convertToPNG = () => {
 {activeTool === "convert" &&(
   <>
   <h3 style={{ marginBottom: "10px", color: "#444" }}>
- Convert to PNG
+  Convert Image
 </h3>
 
-<button 
-  onClick={convertToPNG}
+<select 
+  value={format}
+  onChange={(e) => setFormat(e.target.value)}
   style={{
-  padding: "10px",
-  width: "40%",
-  fontSize: "18px",
-  backgroundColor: "#007bff",
-  color: "white",
-  fontWeight: "bold",
-  border: "none",
-  borderRadius: "8px",
-  cursor: "pointer"
-}}
+    padding: "10px",
+    marginBottom: "15px",
+    borderRadius: "5px",
+  }}
 >
-  Convert to PNG
+  <option value="png">PNG</option>
+  <option value="jpeg">JPG</option>
+</select>
+<br></br>
+
+<button 
+  onClick={convertImage}
+  style={{
+    padding: "10px",
+    width: "40%f",
+    fontSize: "18px",
+    backgroundColor: "#007bff",
+    color: "white",
+    fontWeight: "bold",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer"
+  }}
+>
+  Convert Image
 </button>
   </>
 )}
 {compressed && (
         <a 
           href={compressed} 
-          download="compressed.png"
+          download={'converted.${format}'}
           style={{
   marginTop: "20px",
   display: "block",
