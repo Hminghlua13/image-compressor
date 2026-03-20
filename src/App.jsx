@@ -79,7 +79,7 @@ const convertToPNG = () => {
       textAlign: "center",
       fontWeight: "bold"
     }}>
-      Free Tools Hub
+      🔥 Free Tools Hub
     </div>
 
     {/* 🧱 Main Content */}
@@ -88,18 +88,29 @@ const convertToPNG = () => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      flex: 1
+      flex: 1,
+      gap: "10px"
     }}>
       <div style={{
-    backgroundColor: "white",
-    padding: "40px",
-    borderRadius: "10px",
-    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-    textAlign: "center"
-  }}>
-      <h1 style={{ marginBottom: "20px", color: "#222" }}>
+  backgroundColor: "white",
+  padding: "40px",
+  borderRadius: "15px",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+  textAlign: "center",
+  width: "100%",
+  maxWidth: "500px"
+}}>
+      <h1 style={{ marginBottom: "20px", color: "#222", fontSize: "24px" }}>
         Compress Image Online Free
       </h1>
+      <p style={{ 
+  color: "#666", 
+  fontSize: "14px", 
+  marginBottom: "20px" 
+}}>
+  Compress, resize and convert your images instantly — free and secure.
+</p>
+
       <div style={{ marginBottom: "20px" }}>
   <button 
     onClick={() => setActiveTool("compress")}
@@ -148,30 +159,38 @@ const convertToPNG = () => {
 {activeTool === "compress" && (
   <>
    <input 
-        type="file" 
-        onChange={handleImage}
-        style={{ marginBottom: "20px" }}
-      />
+  type="file" 
+  onChange={handleImage}
+  style={{
+    marginBottom: "20px",
+    padding: "10px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    width: "100%"
+  }}
+/>
 
       {image && (
         <img 
           src={URL.createObjectURL(image)} 
           alt="preview"
-          style={{ width: "200px", marginBottom: "20px" }}
+          style={{ width: "200px", marginBottom: "20px", borderRadius: "10px", marginBottom: "20px" }}
         />
       )}
 
       <button 
         onClick={compressImage}
         style={{
-          padding: "10px 20px",
-          fontSize: "16px",
-          backgroundColor: "#007bff",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer"
-        }}
+  padding: "10px",
+  width: "40%",
+  fontSize: "18px",
+  fontWeight: "bold",
+  backgroundColor: "#007bff",
+  color: "white",
+  border: "none",
+  borderRadius: "8px",
+  cursor: "pointer"
+}}
       >
         Compress Image
       </button>
@@ -179,7 +198,7 @@ const convertToPNG = () => {
 )}
 {activeTool === "resize" && (
   <>
-  <h3 style={{ marginTop: "30px", marginBottom: "10px", color: "#333" }}>
+  <h3 style={{ marginBottom: "10px", color: "#444" }}>
   Resize Image
 </h3>
 
@@ -215,14 +234,16 @@ const convertToPNG = () => {
 <button 
   onClick={resizeImage}
   style={{
-    padding: "10px 20px",
-    fontSize: "14px",
-    backgroundColor: "#28a745",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer"
-  }}
+  padding: "10px",
+  width: "40%",
+  fontSize: "18px",
+  fontWeight: "bold",
+  backgroundColor: "#007bff",
+  color: "white",
+  border: "none",
+  borderRadius: "8px",
+  cursor: "pointer"
+}}
 >
   Resize Image
 </button>
@@ -230,21 +251,23 @@ const convertToPNG = () => {
 )}
 {activeTool === "convert" &&(
   <>
-  <h3 style={{ marginTop: "30px", color: "#333" }}>
-  Convert to PNG
+  <h3 style={{ marginBottom: "10px", color: "#444" }}>
+ Convert to PNG
 </h3>
 
 <button 
   onClick={convertToPNG}
   style={{
-    padding: "10px 20px",
-    fontSize: "14px",
-    backgroundColor: "#ff5722",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer"
-  }}
+  padding: "10px",
+  width: "40%",
+  fontSize: "18px",
+  backgroundColor: "#007bff",
+  color: "white",
+  fontWeight: "bold",
+  border: "none",
+  borderRadius: "8px",
+  cursor: "pointer"
+}}
 >
   Convert to PNG
 </button>
@@ -255,11 +278,14 @@ const convertToPNG = () => {
           href={compressed} 
           download="compressed.png"
           style={{
-            marginTop: "20px",
-            textDecoration: "none",
-            color: "#007bff",
-            fontWeight: "bold"
-          }}
+  marginTop: "20px",
+  display: "block",
+  textDecoration: "none",
+  backgroundColor: "#222",
+  color: "white",
+  padding: "10px",
+  borderRadius: "8px"
+}}
         >
           Download Image
         </a>
@@ -268,6 +294,13 @@ const convertToPNG = () => {
 
     </div>
 </div>
+<p style={{ 
+  marginTop: "15px", 
+  fontSize: "12px", 
+  color: "#888" 
+}}>
+  ⚡ Fast • 🔒 Secure • 📱 Works on all devices
+</p>
     {/* 🔻 Footer */}
     <div style={{
       width: "100%",
