@@ -291,7 +291,7 @@ const convertImage = () => {
 {compressed && (
         <a 
           href={compressed} 
-          download={'converted.${format}'}
+          download={`converted.${format}`}
           style={{
   marginTop: "20px",
   display: "block",
@@ -305,9 +305,13 @@ const convertImage = () => {
           Download Image
         </a>
       )}
-
-
-    </div>
+      
+<div style={{ marginTop: "30px", textAlign: "left" }}>
+  <h3>About This Tool</h3>
+  <p>
+    This free online tool helps you compress images, resize photos and convert formats like PNG and JPG instantly. 
+    No signup required and works on all devices.
+  </p>
 </div>
 <p style={{ 
   marginTop: "15px", 
@@ -316,6 +320,8 @@ const convertImage = () => {
 }}>
   ⚡ Fast • 🔒 Secure • 📱 Works on all devices
 </p>
+    </div>
+</div>
     {/* 🔻 Footer */}
     <div style={{
       width: "100%",
