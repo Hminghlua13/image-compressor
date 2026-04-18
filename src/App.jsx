@@ -308,10 +308,17 @@ const convertImage = () => {
       
 <div style={{ marginTop: "30px", textAlign: "left" }}>
   <h3>About This Tool</h3>
-  <p>
+  <p style={{lineHeight: "1.6"}}>
     This free online tool helps you compress images, resize photos and convert formats like PNG and JPG instantly. 
     No signup required and works on all devices.
   </p>
+  <p style={{ lineHeight: "1.6" }}>
+  Reduce image file size without losing quality. Perfect for websites, forms, and social media uploads.
+</p>
+
+<p style={{ lineHeight: "1.6" }}>
+  Supports JPG, PNG and fast conversion between formats.
+</p>
 </div>
 <p style={{ 
   marginTop: "15px", 
